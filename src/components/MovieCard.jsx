@@ -11,7 +11,7 @@ function MovieCard({ id, title, description, posterURL, rating }) {
             className="rounded-lg w-full object-cover mb-4"
           />
           <h2 className="text-xl font-semibold mb-3">{title}</h2>
-          <p className="grow text-sm">{description}</p>
+          <p className="grow text-lg">{description}</p>
         </div>
         <span className="mt-4">⭐ {rating}</span>
       </div>
