@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+input{
+  background-color: white;
+  border-radius: 5px;
+  padding: 4px;
+}
+textarea{
+  background-color: white;
+  border-radius: 5px;
+  padding: 4px;
+}
