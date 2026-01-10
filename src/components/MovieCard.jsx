@@ -1,11 +1,21 @@
-function MovieCard({ title, description, posterURL, rating }) {
+import { Link } from "react-router-dom";
+
+function MovieCard({ id, title, description, posterURL, rating }) {
   return (
-    <div className="bg-blue-900 w-70 p-6 rounded-xl flex flex-col justify-between">
-      <img src={posterURL} alt={title} className="rounded-lg"/>
-      <h2 className="text-xl font-semibold">{title}</h2>
-      <p>{description}</p>
-      <span className="relative bottom-0">⭐ {rating}</span>
-    </div>
+    <Link to={`/movie/${id}`}>
+      <div className="bg-blue-900 w-70 p-6 rounded-xl flex flex-col justify-between cursor-pointer hover:opacity-80 transition-opacity h-full">
+        <div className="flex-1 flex flex-col">
+          <img
+            src={posterURL}
+            alt={title}
+            className="rounded-lg w-full object-cover mb-4"
+          />
+          <h2 className="text-xl font-semibold mb-3">{title}</h2>
+          <p className="grow text-sm">{description}</p>
+        </div>
+        <span className="mt-4">⭐ {rating}</span>
+      </div>
+    </Link>
   );
 }
 export default MovieCard;

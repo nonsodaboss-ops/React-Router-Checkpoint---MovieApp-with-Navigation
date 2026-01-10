@@ -6,6 +6,7 @@ function AddMovie({ setMovies, movies }) {
   const [description, setDescription] = useState("");
   const [posterURL, setPosterURL] = useState("");
   const [rating, setRating] = useState(0);
+  const [trailerLink, setTrailerLink] = useState("");
 
   // Handle form submission
   const handleSubmit = (e) => {
@@ -17,6 +18,7 @@ function AddMovie({ setMovies, movies }) {
       description,
       posterURL,
       rating: Number(rating),
+      trailerLink,
     };
 
     // Update movies list
@@ -26,6 +28,7 @@ function AddMovie({ setMovies, movies }) {
     setTitle("");
     setDescription("");
     setPosterURL("");
+    setTrailerLink("");
     setRating(0);
   };
 
@@ -60,6 +63,13 @@ function AddMovie({ setMovies, movies }) {
           onChange={(e) => setRating(e.target.value)}
           min="0"
           max="5"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Trailer Link (YouTube URL)"
+          value={trailerLink}
+          onChange={(e) => setTrailerLink(e.target.value)}
           required
         />
       </div>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MovieList from "./components/MovieList";
 import Filter from "./components/Filter";
 import AddMovie from "./components/AddMovie";
-import MovieCard from "./components/MovieCard";
+import MovieDescription from "./components/MovieDescription";
 
 function App() {
   const [movies, setMovies] = useState([
@@ -13,6 +14,8 @@ function App() {
       posterURL:
         "https://media.themoviedb.org/t/p/w220_and_h330_face/n0QsUsyqrFQNsoneLF4LNW3vQBq.jpg",
       rating: 5,
+      trailerLink:
+        "https://www.youtube.com/watch?v=naQr0uTrH_s&pp=ygU9cGlyYXRlcyBvZiB0aGUgY2FyaWJiZWFuIHRoZSBjdXJzZSBvZiB0aGUgYmxhY2sgcGVhcmwgdHJhaWxlcg%3D%3D",
     },
     {
       title: "Mission: Impossible (1996)",
@@ -21,14 +24,18 @@ function App() {
       posterURL:
         "https://media.themoviedb.org/t/p/w220_and_h330_face/brVZbvZJWC89eUCEDeQ3jmhUlKr.jpg",
       rating: 4,
+      trailerLink:
+        "https://www.youtube.com/watch?v=L8Pbjh4EZRk&pp=ygUiTWlzc2lvbjogSW1wb3NzaWJsZSAoMTk5NikgdHJhaWxlcg%3D%3D",
     },
     {
-      title: "3 Idiots",
+      title: "Coming to America",
       description:
-        "Two friends search for their long-lost companion, recalling their college days with Rancho, who inspired them to think differently and challenged the rigid education system.",
+        "An African prince travels to America to find a suitable bride who loves him for who he really is, not for his title or wealth.",
       posterURL:
-        "https://media.themoviedb.org/t/p/w220_and_h330_face/66A9MqXOyVFCssoloscw79z8Tew.jpg",
-      rating: 5,
+        "https://th.bing.com/th/id/OIP.KAsFob0I61uCvAGcbMTB4QHaLI?w=186&h=280&c=7&r=0&o=7&pid=1.7&rm=3",
+      rating: 4,
+      trailerLink:
+        "https://www.youtube.com/watch?v=ZDme5Y5E-bI&pp=ygUZY29taW5nIHRvIGFtZXJpY2EgdHJhaWxlcg%3D%3D",
     },
   ]);
   const [titleFilter, setTitleFilter] = useState("");
@@ -41,16 +48,30 @@ function App() {
   );
 
   return (
-    <div className="bg-blue-600 w-fit p-20 mx-auto ">
-      <h1 className="text-center text-4xl font-semibold mb-5">My Movie App</h1>
-      <Filter
-        setTitleFilter={setTitleFilter}
-        setRatingFilter={setRatingFilter}
-      />
-
-      <MovieList movies={filteredMovies} />
-      <AddMovie setMovies={setMovies} movies={movies} />
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="bg-blue-600 w-fit p-20 mx-auto ">
+              <h1 className="text-center text-4xl font-semibold mb-5">
+                My Movie App
+              </h1>
+              <Filter
+                setTitleFilter={setTitleFilter}
+                setRatingFilter={setRatingFilter}
+              />
+              <MovieList movies={filteredMovies} allMovies={movies} />
+              <AddMovie setMovies={setMovies} movies={movies} />
+            </div>
+          }
+        />
+        <Route
+          path="/movie/:id"
+          element={<MovieDescription movies={movies} />}
+        />
+      </Routes>
+    </Router>
   );
 }
 
