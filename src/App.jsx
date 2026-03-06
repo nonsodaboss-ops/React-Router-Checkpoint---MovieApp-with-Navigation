@@ -48,7 +48,6 @@ function App() {
   );
 
   return (
-    <Router>
       <Routes>
         <Route
           path="/"
@@ -71,7 +70,6 @@ function App() {
           element={<MovieDescription movies={movies} />}
         />
       </Routes>
-    </Router>
   );
 }
 
